@@ -4,10 +4,10 @@
 
 // --------------------------------------------
 // CONTADOR BEBÉ — Tabla de datos (40 semanas)
-// Fecha estimada de parto: 15 de Octubre de 2026
-// Hoy (28 feb 2026) = semana 8 de embarazo
+// Fecha estimada de parto: 24 de Octubre de 2026
+// Hoy (28 feb 2026) = semana 6 del embarazo
 // --------------------------------------------
-const FECHA_PARTO = new Date(2026, 9, 15); // Mes 9 = Octubre (0-indexado)
+const FECHA_PARTO = new Date(2026, 9, 24); // Mes 9 = Octubre (0-indexado)
 const SEMANAS_EMBARAZO = 40;
 
 const DATOS_BEBE = [
