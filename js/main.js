@@ -72,3 +72,84 @@ function inicializarBlog() {
 // Ejecutar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', inicializarBlog);
 
+// --------------------------------------------
+// Navbar — Hamburger (mobile)
+// --------------------------------------------
+function inicializarHamburger() {
+    const hamburger = document.getElementById('navbar-hamburger');
+    const menu = document.getElementById('navbar-links');
+    if (!hamburger || !menu) return;
+
+    hamburger.addEventListener('click', () => {
+        const estaAbierto = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', String(!estaAbierto));
+        menu.classList.toggle('is-open', !estaAbierto);
+        hamburger.setAttribute('aria-label', estaAbierto ? 'Abrir menú' : 'Cerrar menú');
+    });
+
+    // Cerrar menú al hacer clic en cualquier enlace
+    menu.querySelectorAll('.navbar-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.setAttribute('aria-expanded', 'false');
+            menu.classList.remove('is-open');
+            hamburger.setAttribute('aria-label', 'Abrir menú');
+        });
+    });
+}
+
+// --------------------------------------------
+// Navbar — Scroll Spy con Intersection Observer
+// Añade .is-active al link de la sección visible
+// --------------------------------------------
+function inicializarNavScrollSpy() {
+    // Secciones observables: el id en el HTML debe coincidir con el href del link
+    const secciones = document.querySelectorAll('main section[id]');
+    const links = document.querySelectorAll('.navbar-link');
+    if (!secciones.length || !links.length) return;
+
+    // Mapa href -> link element  (ej: "#sobre-titulo" -> <a>)
+    const linkMap = {};
+    links.forEach(link => {
+        linkMap[link.getAttribute('href')] = link;
+    });
+
+    const activarLink = (id) => {
+        links.forEach(l => l.classList.remove('is-active'));
+        // Intentar hacer match por id de sección o por el id del h2 dentro de ella
+        const bySection = linkMap[`#${id}`];
+        if (bySection) {
+            bySection.classList.add('is-active');
+            return;
+        }
+        // Fallback: buscar el h2 con id dentro de la sección
+        const seccion = document.getElementById(id);
+        if (!seccion) return;
+        const heading = seccion.querySelector('[id]');
+        if (heading) {
+            const byHeading = linkMap[`#${heading.id}`];
+            if (byHeading) byHeading.classList.add('is-active');
+        }
+    };
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    activarLink(entry.target.id);
+                }
+            });
+        },
+        {
+            rootMargin: '-20% 0px -70% 0px', // activa cuando el top 30% del viewport toca la sección
+            threshold: 0
+        }
+    );
+
+    secciones.forEach(sec => observer.observe(sec));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarHamburger();
+    inicializarNavScrollSpy();
+});
+

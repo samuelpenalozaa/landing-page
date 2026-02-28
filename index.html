@@ -44,10 +44,31 @@
 
 <body>
 
+    <!-- ===== NAVBAR FIJA ===== -->
+    <nav class="navbar" id="navbar" aria-label="Navegación rápida">
+        <a href="#hero" class="navbar-logo">SP</a>
+
+        <ul class="navbar-links" id="navbar-links" role="list">
+            <li><a href="#sobre-titulo" class="navbar-link">Sobre mí</a></li>
+            <li><a href="#que-hago-titulo" class="navbar-link">Qué hago</a></li>
+            <li><a href="#pienso-titulo" class="navbar-link">Lo que pienso</a></li>
+            <li><a href="#blog-titulo" class="navbar-link">Blog</a></li>
+            <li><a href="#servicios-titulo" class="navbar-link">Servicios</a></li>
+            <li><a href="#contacto-titulo" class="navbar-link navbar-link--cta">Contacto</a></li>
+        </ul>
+
+        <button class="navbar-hamburger" id="navbar-hamburger" aria-label="Abrir menú" aria-expanded="false"
+            aria-controls="navbar-links">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+    </nav>
+
     <!-- Hero / Header -->
     <header>
-        <div class="hero">
-            <nav class="nav" aria-label="Navegación principal">
+        <div class="hero" id="hero">
+            <nav class="nav" aria-label="Información de página">
                 <span>Samuel Peñaloza</span>
                 <span>Colombia · 2025</span>
             </nav>
@@ -72,7 +93,7 @@
     <!-- Contenido principal -->
     <main>
 
-        <section aria-labelledby="sobre-titulo">
+        <section id="sobre" aria-labelledby="sobre-titulo">
             <div class="sec-header">
                 <span class="sec-num">01 —</span>
                 <h2 id="sobre-titulo" class="sec-title">Sobre mí</h2>
@@ -104,7 +125,7 @@
             </div>
         </section>
 
-        <section aria-labelledby="que-hago-titulo">
+        <section id="que-hago" aria-labelledby="que-hago-titulo">
             <div class="sec-header">
                 <span class="sec-num">02 —</span>
                 <h2 id="que-hago-titulo" class="sec-title">Qué hago</h2>
@@ -135,7 +156,7 @@
             </div>
         </section>
 
-        <section style="border-bottom: none; padding-bottom: 0;" aria-labelledby="pienso-titulo">
+        <section id="pienso" style="border-bottom: none; padding-bottom: 0;" aria-labelledby="pienso-titulo">
             <div class="sec-header">
                 <span class="sec-num">03 —</span>
                 <h2 id="pienso-titulo" class="sec-title">Lo que pienso</h2>
@@ -167,7 +188,7 @@
             </div>
         </div>
 
-        <section style="margin-top: 4rem;" aria-labelledby="quiero-titulo">
+        <section id="quiero" style="margin-top: 4rem;" aria-labelledby="quiero-titulo">
             <div class="sec-header">
                 <span class="sec-num">04 —</span>
                 <h2 id="quiero-titulo" class="sec-title">Qué quiero</h2>
@@ -182,7 +203,7 @@
             </ul>
         </section>
 
-        <section aria-labelledby="espera-titulo">
+        <section id="espera" aria-labelledby="espera-titulo">
             <div class="sec-header">
                 <span class="sec-num">05 —</span>
                 <h2 id="espera-titulo" class="sec-title">La dulce espera</h2>
@@ -194,7 +215,7 @@
             </div>
         </section>
 
-        <section aria-labelledby="blog-titulo">
+        <section id="blog" aria-labelledby="blog-titulo">
             <div class="sec-header">
                 <span class="sec-num">06 —</span>
                 <h2 id="blog-titulo" class="sec-title">Mis pensamientos</h2>
@@ -291,7 +312,7 @@
         </section>
 
 
-        <section aria-labelledby="servicios-titulo">
+        <section id="servicios" aria-labelledby="servicios-titulo">
             <div class="sec-header">
                 <span class="sec-num">08 —</span>
                 <h2 id="servicios-titulo" class="sec-title">Servicios</h2>
@@ -341,7 +362,7 @@
             </div>
         </section>
 
-        <section aria-labelledby="contacto-titulo">
+        <section id="contacto" aria-labelledby="contacto-titulo">
             <div class="sec-header">
                 <span class="sec-num">07 —</span>
                 <h2 id="contacto-titulo" class="sec-title">Contacto</h2>
