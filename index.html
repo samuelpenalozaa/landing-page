@@ -208,12 +208,44 @@
                 <span class="sec-num">05 —</span>
                 <h2 id="espera-titulo" class="sec-title">La dulce espera</h2>
             </div>
-            <div class="contador-wrap">
-                <p class="contador-label">// Cuenta regresiva</p>
-                <div class="contador-numero" id="semanas-embarazo" aria-live="polite">00</div>
-                <p class="contador-label">Semanas para conocerlo</p>
+
+            <div class="bebe-card" aria-live="polite">
+
+                <!-- Fila superior: semana actual + semanas restantes -->
+                <div class="bebe-top">
+                    <div class="bebe-semana-bloque">
+                        <p class="bebe-etiqueta">// Semana de embarazo</p>
+                        <div class="bebe-semana-num" id="bebe-semana-actual">—</div>
+                        <p class="bebe-etiqueta">de 40 semanas</p>
+                    </div>
+                    <div class="bebe-divider" aria-hidden="true"></div>
+                    <div class="bebe-semana-bloque">
+                        <p class="bebe-etiqueta">// Semanas restantes</p>
+                        <div class="bebe-semana-num bebe-semana-num--secundario" id="bebe-semanas-restantes">—</div>
+                        <p class="bebe-etiqueta">para conocerlo</p>
+                    </div>
+                </div>
+
+                <!-- Barra de progreso -->
+                <div class="bebe-progreso-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="40"
+                    id="bebe-progressbar">
+                    <div class="bebe-progreso-barra" id="bebe-progreso-fill"></div>
+                </div>
+                <p class="bebe-progreso-label" id="bebe-progreso-label">0% completado</p>
+
+                <!-- Datos del bebé esta semana -->
+                <div class="bebe-datos">
+                    <div class="bebe-emoji" id="bebe-emoji" aria-hidden="true">🫐</div>
+                    <div class="bebe-info">
+                        <p class="bebe-tamanio-label">// Tamaño esta semana</p>
+                        <p class="bebe-tamanio" id="bebe-tamanio">— cm</p>
+                        <p class="bebe-comparacion" id="bebe-comparacion">Cargando datos...</p>
+                    </div>
+                </div>
+
             </div>
         </section>
+
 
         <section id="blog" aria-labelledby="blog-titulo">
             <div class="sec-header">
