@@ -17,7 +17,7 @@ const DATOS_BEBE = [
     { s: 3, cm: 0.15, e: '🌱', c: '0.15 cm — del tamaño de la cabeza de un alfiler.' },
     { s: 4, cm: 0.2, e: '🫘', c: '0.2 cm — como una semilla de amapola.' },
     { s: 5, cm: 0.4, e: '🌱', c: '0.4 cm — como una semilla de manzana.' },
-    { s: 6, cm: 0.6, e: '🫛', c: '0.6 cm — del tamaño de un chip de chocolate.' },
+    { s: 6, cm: 0.6, e: '🫛', c: '0.6 cm — del tamaño de una lenteja o guisante. ¡Hola, bebé!' },
     { s: 7, cm: 1.0, e: '🫐', c: '1.0 cm — como un arándano fresco.' },
     { s: 8, cm: 1.6, e: '🫐', c: '1.6 cm — del tamaño de una frambuesa madura.' },
     { s: 9, cm: 2.3, e: '🍇', c: '2.3 cm — como una uva pequeña.' },
