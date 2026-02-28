@@ -31,3 +31,44 @@ function calcularSemanasFaltantes() {
 
 // Ejecutar al cargar la página
 calcularSemanasFaltantes();
+
+// --------------------------------------------
+// Blog — Expandir / Colapsar entradas
+// Maneja todos los botones .btn-leer-mas
+// --------------------------------------------
+function inicializarBlog() {
+    const botones = document.querySelectorAll('.btn-leer-mas');
+
+    botones.forEach(boton => {
+        boton.addEventListener('click', () => {
+            const postId = boton.getAttribute('data-target');
+            const post = document.getElementById(postId);
+            if (!post) return;
+
+            const fullText = post.querySelector('.blog-full-text');
+            if (!fullText) return;
+
+            const estaExpandido = boton.getAttribute('aria-expanded') === 'true';
+
+            if (estaExpandido) {
+                // Colapsar
+                fullText.classList.remove('is-expanded');
+                fullText.hidden = false; // mantener en DOM para transición
+                boton.setAttribute('aria-expanded', 'false');
+                boton.childNodes[0].textContent = 'Leer más ';
+            } else {
+                // Expandir
+                fullText.hidden = false;
+                // Forzar reflow para que la transición CSS funcione
+                fullText.getBoundingClientRect();
+                fullText.classList.add('is-expanded');
+                boton.setAttribute('aria-expanded', 'true');
+                boton.childNodes[0].textContent = 'Leer menos ';
+            }
+        });
+    });
+}
+
+// Ejecutar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', inicializarBlog);
+
