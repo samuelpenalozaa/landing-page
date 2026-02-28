@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Fondo negro -->
+  <rect width="64" height="64" rx="8" fill="#0a0a0a"/>
+  <!-- Borde naranja sutil -->
+  <rect width="64" height="64" rx="8" fill="none" stroke="#ff4d00" stroke-width="2"/>
+  <!-- Inicial S en naranja -->
+  <text
+    x="10"
+    y="46"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="36"
+    font-weight="bold"
+    font-style="italic"
+    fill="#ff4d00"
+    letter-spacing="-2">S</text>
+  <!-- Inicial P en crema -->
+  <text
+    x="32"
+    y="46"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="36"
+    font-weight="bold"
+    font-style="italic"
+    fill="#f4f0e8"
+    letter-spacing="-2">P</text>
+</svg>
