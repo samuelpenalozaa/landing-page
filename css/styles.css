@@ -13,6 +13,54 @@
     /* used for scroll-margin-top offset */
 }
 
+/* ============================================
+   MODO CLARO
+   ============================================ */
+html[data-theme="light"] {
+    --negro: #f4f0e8;
+    /* Fondo crema principal */
+    --blanco: #0a0a0a;
+    /* Texto oscuro principal */
+    --naranja: #d44000;
+    /* Naranja ligeramente más oscuro para mejor contraste en fondos claros */
+    --gris: #e8e2d5;
+    /* Paneles/fondos secundarios claros */
+    --gris-claro: #d1cab8;
+    /* Bordes sutiles o separadores */
+}
+
+/* Theme toggle button styling */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--blanco);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.theme-toggle:hover {
+    color: var(--naranja);
+    transform: scale(1.1);
+}
+
+.theme-toggle svg {
+    display: none;
+}
+
+/* Mostrar luna por defecto (modo oscuro) */
+html:not([data-theme="light"]) .theme-toggle .icon-moon {
+    display: block;
+}
+
+/* Mostrar sol en modo claro */
+html[data-theme="light"] .theme-toggle .icon-sun {
+    display: block;
+}
+
 /* Reset */
 * {
     margin: 0;
@@ -912,6 +960,36 @@ footer {
     to {
         transform: translateX(-50%);
     }
+}
+
+/* ============================================
+   ANIMACIONES SCROLL
+   ============================================ */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 {
+    transition-delay: 0.15s;
+}
+
+.delay-2 {
+    transition-delay: 0.30s;
+}
+
+.delay-3 {
+    transition-delay: 0.45s;
+}
+
+.delay-4 {
+    transition-delay: 0.60s;
 }
 
 /* ============================================

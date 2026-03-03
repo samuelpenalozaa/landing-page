@@ -57,12 +57,35 @@
             <li><a href="#contacto-titulo" class="navbar-link navbar-link--cta">Contacto</a></li>
         </ul>
 
-        <button class="navbar-hamburger" id="navbar-hamburger" aria-label="Abrir menú" aria-expanded="false"
-            aria-controls="navbar-links">
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
-        </button>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar modo claro/oscuro">
+                <!-- Sol (oculto en claro, visible en oscuro si lo deseamos, o viceversa. Lo controlaremos por CSS) -->
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <!-- Luna -->
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+
+            <button class="navbar-hamburger" id="navbar-hamburger" aria-label="Abrir menú" aria-expanded="false"
+                aria-controls="navbar-links">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+        </div>
     </nav>
 
     <!-- Hero / Header -->
@@ -93,30 +116,30 @@
     <!-- Contenido principal -->
     <main>
 
-        <section id="sobre" aria-labelledby="sobre-titulo">
+        <section id="sobre" class="fade-in-section" aria-labelledby="sobre-titulo">
             <div class="sec-header">
                 <span class="sec-num">01 —</span>
                 <h2 id="sobre-titulo" class="sec-title">Sobre mí</h2>
             </div>
             <div class="sobre-grid">
-                <div class="sobre-card">
+                <div class="sobre-card fade-in-section delay-1">
                     <p class="card-label">// trabajo</p>
                     <p>Soy <strong>técnico calibrador de detectores de radiación</strong>. Trabajo con tecnología
                         especializada, precisión y protocolos. El tipo de trabajo donde los errores no están permitidos.
                     </p>
                 </div>
-                <div class="sobre-card">
+                <div class="sobre-card fade-in-section delay-2">
                     <p class="card-label">// pronto papá</p>
                     <p>Hay una <strong>habitación que se está transformando</strong>. Las pesas van a salir. Un bebé
                         está
                         llegando, y eso lo cambia todo — en el mejor sentido posible.</p>
                 </div>
-                <div class="sobre-card">
+                <div class="sobre-card fade-in-section delay-3">
                     <p class="card-label">// combate</p>
                     <p>Me gustan los deportes donde hay <strong>respeto, técnica y carácter</strong>. Boxeo, MMA. No el
                         fútbol. Me quedo con lo que exige de verdad.</p>
                 </div>
-                <div class="sobre-card">
+                <div class="sobre-card fade-in-section delay-4">
                     <p class="card-label">// personalidad</p>
                     <p>Soy directo. Si digo X, espero X. Estoy aprendiendo que el mundo es flexible — y que yo también
                         <strong>puedo serlo sin perder quien soy</strong>.
@@ -125,12 +148,12 @@
             </div>
         </section>
 
-        <section id="que-hago" aria-labelledby="que-hago-titulo">
+        <section id="que-hago" class="fade-in-section" aria-labelledby="que-hago-titulo">
             <div class="sec-header">
                 <span class="sec-num">02 —</span>
                 <h2 id="que-hago-titulo" class="sec-title">Qué hago</h2>
             </div>
-            <div class="trabajo-item">
+            <div class="trabajo-item fade-in-section delay-1">
                 <span class="trabajo-num">01</span>
                 <div class="trabajo-content">
                     <h3>Calibración de detectores</h3>
@@ -138,7 +161,7 @@
                     </p>
                 </div>
             </div>
-            <div class="trabajo-item">
+            <div class="trabajo-item fade-in-section delay-2">
                 <span class="trabajo-num">02</span>
                 <div class="trabajo-content">
                     <h3>Automatización con IA</h3>
@@ -146,7 +169,7 @@
                         rápidos, menos error humano.</p>
                 </div>
             </div>
-            <div class="trabajo-item">
+            <div class="trabajo-item fade-in-section delay-3">
                 <span class="trabajo-num">03</span>
                 <div class="trabajo-content">
                     <h3>Aprendiendo vibe coding</h3>
@@ -156,7 +179,8 @@
             </div>
         </section>
 
-        <section id="pienso" style="border-bottom: none; padding-bottom: 0;" aria-labelledby="pienso-titulo">
+        <section id="pienso" class="fade-in-section" style="border-bottom: none; padding-bottom: 0;"
+            aria-labelledby="pienso-titulo">
             <div class="sec-header">
                 <span class="sec-num">03 —</span>
                 <h2 id="pienso-titulo" class="sec-title">Lo que pienso</h2>
@@ -188,7 +212,7 @@
             </div>
         </div>
 
-        <section id="quiero" style="margin-top: 4rem;" aria-labelledby="quiero-titulo">
+        <section id="quiero" class="fade-in-section" style="margin-top: 4rem;" aria-labelledby="quiero-titulo">
             <div class="sec-header">
                 <span class="sec-num">04 —</span>
                 <h2 id="quiero-titulo" class="sec-title">Qué quiero</h2>
@@ -203,7 +227,7 @@
             </ul>
         </section>
 
-        <section id="espera" aria-labelledby="espera-titulo">
+        <section id="espera" class="fade-in-section" aria-labelledby="espera-titulo">
             <div class="sec-header">
                 <span class="sec-num">05 —</span>
                 <h2 id="espera-titulo" class="sec-title">La dulce espera</h2>
@@ -247,7 +271,7 @@
         </section>
 
 
-        <section id="blog" aria-labelledby="blog-titulo">
+        <section id="blog" class="fade-in-section" aria-labelledby="blog-titulo">
             <div class="sec-header">
                 <span class="sec-num">06 —</span>
                 <h2 id="blog-titulo" class="sec-title">Mis pensamientos</h2>
@@ -255,7 +279,7 @@
             <div class="blog-list">
 
                 <!-- Entrada 1: Vibe Coding -->
-                <article class="blog-post" id="post-vibe-coding">
+                <article class="blog-post fade-in-section delay-1" id="post-vibe-coding">
                     <div class="blog-post-meta">
                         <span class="blog-tag">Tecnología</span>
                         <time datetime="2026-02-20">20 Feb 2026</time>
@@ -299,7 +323,7 @@
                 </article>
 
                 <!-- Entrada 2: Ser papá por primera vez -->
-                <article class="blog-post" id="post-papa">
+                <article class="blog-post fade-in-section delay-2" id="post-papa">
                     <div class="blog-post-meta">
                         <span class="blog-tag">Personal</span>
                         <time datetime="2026-02-10">10 Feb 2026</time>
@@ -344,7 +368,7 @@
         </section>
 
 
-        <section id="servicios" aria-labelledby="servicios-titulo">
+        <section id="servicios" class="fade-in-section" aria-labelledby="servicios-titulo">
             <div class="sec-header">
                 <span class="sec-num">08 —</span>
                 <h2 id="servicios-titulo" class="sec-title">Servicios</h2>
@@ -394,7 +418,7 @@
             </div>
         </section>
 
-        <section id="contacto" aria-labelledby="contacto-titulo">
+        <section id="contacto" class="fade-in-section" aria-labelledby="contacto-titulo">
             <div class="sec-header">
                 <span class="sec-num">07 —</span>
                 <h2 id="contacto-titulo" class="sec-title">Contacto</h2>

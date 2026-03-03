@@ -218,7 +218,74 @@ function inicializarNavScrollSpy() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    inicializarTema(); // IMPORTANTE: tema debe inicializarse primero para evitar destellos
     inicializarHamburger();
     inicializarNavScrollSpy();
+    inicializarAnimacionesScroll();
 });
+
+// --------------------------------------------
+// Modo Claro / Oscuro
+// --------------------------------------------
+function inicializarTema() {
+    const botonToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    // 1. Revisar si hay preferencia guardada en localStorage
+    const temaGuardado = localStorage.getItem('theme');
+
+    // 2. Si no hay preferencia guardada, buscar la del sistema
+    const prefiereClaro = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+
+    // Determinar el tema inicial
+    let temaActual = 'dark'; // Por defecto, como lo solicitó
+    if (temaGuardado === 'light' || (!temaGuardado && prefiereClaro)) {
+        temaActual = 'light';
+    }
+
+    // Aplicar el tema inicial
+    if (temaActual === 'light') {
+        htmlElement.setAttribute('data-theme', 'light');
+    }
+
+    // Lógica del botón toggle
+    if (botonToggle) {
+        botonToggle.addEventListener('click', () => {
+            const esModoClaro = htmlElement.getAttribute('data-theme') === 'light';
+
+            if (esModoClaro) {
+                // Cambiar a Oscuro
+                htmlElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                // Cambiar a Claro
+                htmlElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
+}
+
+// --------------------------------------------
+// Animaciones Scroll (Intersection Observer)
+// --------------------------------------------
+function inicializarAnimacionesScroll() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            } else {
+                // Al salir del viewport se quita la clase para que se vuelva a animar al entrar
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, {
+        rootMargin: '0px 0px -10% 0px', // Activa un poco antes de que toque el fondo
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.fade-in-section').forEach(el => {
+        observer.observe(el);
+    });
+}
 
