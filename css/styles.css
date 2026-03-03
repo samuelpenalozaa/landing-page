@@ -76,7 +76,6 @@ body {
     background: var(--negro);
     color: var(--blanco);
     font-family: 'DM Mono', monospace;
-    cursor: crosshair;
     overflow-x: hidden;
 }
 
@@ -88,6 +87,26 @@ body::before {
     pointer-events: none;
     z-index: 999;
     opacity: 0.4;
+}
+
+/* ============================================
+   CURSOR (CANVAS)
+   ============================================ */
+/* Ocultar el cursor por defecto SÓLO en dispositivos con ratón preciso */
+@media (pointer: fine) {
+    * {
+        cursor: none !important;
+    }
+}
+
+#cursor-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
 }
 
 /* ============================================

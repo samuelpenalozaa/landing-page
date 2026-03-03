@@ -222,11 +222,210 @@ document.addEventListener('DOMContentLoaded', () => {
     inicializarHamburger();
     inicializarNavScrollSpy();
     inicializarAnimacionesScroll();
+    inicializarCursor();
+    inicializarTypewriter();
 });
 
 // --------------------------------------------
-// Modo Claro / Oscuro
+// Cursor Personalizado con Partículas (Canvas)
 // --------------------------------------------
+function inicializarCursor() {
+    // Si es un dispositivo móvil (pantalla táctil), no hacer nada
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    const canvas = document.getElementById('cursor-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Posición real del ratón
+    const mouse = { x: width / 2, y: height / 2 };
+    // Posición del círculo exterior (efecto magnético / delay)
+    const circle = { x: width / 2, y: height / 2 };
+
+    // Arreglo para guardar las partículas activas
+    const particulas = [];
+
+    // Colores y configuraciones
+    const puntoRadio = 3;
+    const circuloRadio = 15;
+    // Usar el valor crudo del naranja de styles.css, ajustado en RGB para facilitar opacidad
+    const colorNaranja = '255, 77, 0'; // Corresponde al #ff4d00 original
+    const colorNaranjaClaro = '212, 64, 0'; // Corresponde al #d44000 del tema claro
+
+    // Determinar qué naranja usar según la variable CSS calculada
+    function obtenerColorBase() {
+        const rgbFormato = getComputedStyle(document.documentElement).getPropertyValue('--naranja').trim();
+        // Si el valor devuelto tiene formato hex, lo tratamos, sino usamos el naranja base
+        return htmlTheme() === 'light' ? colorNaranjaClaro : colorNaranja;
+    }
+
+    function htmlTheme() {
+        return document.documentElement.getAttribute('data-theme');
+    }
+
+    class Particula {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            // Tamaño orgánico aleatorio
+            this.size = Math.random() * 2 + 1;
+            // Velocidad aleatoria en ambas direcciones
+            const angulo = Math.random() * Math.PI * 2;
+            const velocidad = Math.random() * 2 + 0.5;
+            this.vx = Math.cos(angulo) * velocidad;
+            this.vy = Math.sin(angulo) * velocidad;
+            // Opacidad
+            this.alpha = 1;
+            // Tasa de desvanecimiento
+            this.decay = Math.random() * 0.02 + 0.015;
+            // Color fijado al nacer
+            this.rgbBase = obtenerColorBase();
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.alpha -= this.decay;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${this.rgbBase}, ${this.alpha})`;
+            ctx.fill();
+        }
+    }
+
+    // Eventos de movimiento y click
+    let ultimoMovimiento = Date.now();
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+
+        // "Spawnear" una partícula de vez en cuando (limitado por tiempo para no saturar)
+        const ahora = Date.now();
+        if (ahora - ultimoMovimiento > 40) { // aprox 25 partículas por segundo mientras se mueve
+            particulas.push(new Particula(mouse.x, mouse.y));
+            ultimoMovimiento = ahora;
+        }
+    });
+
+    window.addEventListener('mousedown', (e) => {
+        // Explosión de partículas al hacer click
+        for (let i = 0; i < 15; i++) {
+            particulas.push(new Particula(e.clientX, e.clientY));
+        }
+    });
+
+    // Bucle de animación
+    function animar() {
+        // Limpiar canvas
+        ctx.clearRect(0, 0, width, height);
+
+        // Interpolación del círculo exterior (lerp)
+        circle.x += (mouse.x - circle.x) * 0.15;
+        circle.y += (mouse.y - circle.y) * 0.15;
+
+        // El color actual a usar para el cursor y línea
+        const rgbActual = obtenerColorBase();
+
+        // 1. Dibujar y borrar partículas
+        for (let i = particulas.length - 1; i >= 0; i--) {
+            const p = particulas[i];
+            p.update();
+            if (p.alpha <= 0 || p.size <= 0) {
+                particulas.splice(i, 1);
+            } else {
+                p.draw();
+            }
+        }
+
+        // 2. Dibujar Círculo Magnético
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circuloRadio, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${rgbActual}, 0.5)`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // 3. Dibujar Punto Central Exacto
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, puntoRadio, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgbActual}, 1)`;
+        ctx.fill();
+
+        requestAnimationFrame(animar);
+    }
+
+    // Iniciar
+    animar();
+}
+
+// --------------------------------------------
+// Animación Typewriter (Máquina de escribir)
+// --------------------------------------------
+function inicializarTypewriter() {
+    const elTexto = document.getElementById('typewriter-text');
+    if (!elTexto) return;
+
+    const frases = [
+        "Calibro detectores de radiación de día. De noche aprendo a construir cosas en internet.",
+        "Me gusta que las cosas se hagan.",
+        "Pronto seré papá. Todo cambia."
+    ];
+
+    let fraseIndex = 0;
+    let charIndex = 0;
+    let borrando = false;
+    let timeoutId;
+
+    function type() {
+        const fraseActual = frases[fraseIndex];
+
+        if (borrando) {
+            // Borrando letra por letra
+            elTexto.textContent = fraseActual.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            // Escribiendo letra por letra
+            elTexto.textContent = fraseActual.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        // Determinar velocidad
+        // Borrar es más rápido y constante (30-50ms)
+        // Escribir es variable (40-100ms) simulando teclados humanos
+        let velocidad = borrando ? 30 : Math.random() * 60 + 40;
+
+        // Comprobaciones de estado
+        if (!borrando && charIndex === fraseActual.length) {
+            // Terminó de escribir. Pausa de 2 segundos antes de borrar.
+            velocidad = 2000;
+            borrando = true;
+        } else if (borrando && charIndex === 0) {
+            // Terminó de borrar. Cambiar a la siguiente frase y hacer mini pausa de 500ms
+            borrando = false;
+            fraseIndex = (fraseIndex + 1) % frases.length;
+            velocidad = 500;
+        }
+
+        timeoutId = setTimeout(type, velocidad);
+    }
+
+    // Retardo inicial para que termine la animación css de .fade-in-section antes de escribir
+    setTimeout(type, 1500);
+}
 function inicializarTema() {
     const botonToggle = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
