@@ -38,7 +38,9 @@ html[data-theme="light"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
+    width: 48px;
+    height: 48px;
+    padding: 0;
     transition: color 0.3s, transform 0.3s;
 }
 
@@ -140,10 +142,25 @@ body::before {
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: color 0.2s;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-top: 2px;
+    /* Visual centering nudge */
 }
 
 .navbar-logo:hover {
     color: var(--naranja);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+    margin-top: 2px;
+    /* Visual centering nudge */
 }
 
 /* Mobile: links ocultos como dropdown */
