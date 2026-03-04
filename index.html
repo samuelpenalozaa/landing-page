@@ -33,7 +33,12 @@
     <meta name="twitter:image" content="https://samuelpenaloza.netlify.app/favicon.svg">
 
     <!-- ===== FAVICON ===== -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- PNG 96x96 requerido por Google para indexar favicon en SERP (mínimo 48x48, múltiplos de 48) -->
+    <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
+    <!-- Fallback SVG para navegadores modernos que lo soporten -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <!-- Apple Touch Icon para dispositivos iOS -->
+    <link rel="apple-touch-icon" href="/favicon-96.png">
 
     <!-- ===== FUENTES Y ESTILOS ===== -->
     <link
@@ -54,6 +59,7 @@
             <li><a href="#pienso-titulo" class="navbar-link">Lo que pienso</a></li>
             <li><a href="#blog-titulo" class="navbar-link">Blog</a></li>
             <li><a href="#servicios-titulo" class="navbar-link">Servicios</a></li>
+            <li><a href="portafolio.html" class="navbar-link">Portafolio</a></li>
             <li><a href="#contacto-titulo" class="navbar-link navbar-link--cta">Contacto</a></li>
         </ul>
 

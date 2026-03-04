@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>404 | Samuel Peñaloza</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon-96.png">
+
+    <!-- ===== FUENTES Y ESTILOS ===== -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Variables */
+        :root {
+            --negro: #0a0a0a;
+            --blanco: #f4f0e8;
+            --naranja: #ff4d00;
+        }
+
+        /* MODO CLARO - opcional para el 404 si lee localStorage después, 
+           pero por defecto lo dejaremos oscuro para más impacto visual de "error" */
+        html[data-theme="light"] {
+            --negro: #f4f0e8;
+            --blanco: #0a0a0a;
+            --naranja: #d44000;
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--negro);
+            color: var(--blanco);
+            font-family: 'DM Mono', monospace;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.4;
+        }
+
+        /* CURSOR (CANVAS) */
+        @media (pointer: fine) {
+            * {
+                cursor: none !important;
+            }
+        }
+
+        #cursor-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* 404 Estilos */
+        .error-container {
+            padding: 2rem;
+            max-width: 800px;
+            z-index: 10;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--naranja);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(6rem, 20vw, 15rem);
+            line-height: 0.85;
+            letter-spacing: -0.02em;
+            color: var(--blanco);
+            margin-bottom: 1rem;
+        }
+
+        h1 span {
+            color: var(--naranja);
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #888;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+            min-height: 3em;
+        }
+
+        /* TYPEWRITER */
+        #typewriter-text {
+            color: var(--blanco);
+        }
+
+        #typewriter-cursor {
+            color: var(--naranja);
+            font-weight: bold;
+            animation: blinkCursor 0.8s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blinkCursor {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Botón */
+        .btn-regresar {
+            display: inline-block;
+            background: transparent;
+            color: var(--naranja);
+            border: 1px solid var(--naranja);
+            padding: 1rem 2rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-regresar:hover {
+            background: var(--naranja);
+            color: var(--negro);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="error-container">
+        <p class="label">// RADIACIÓN NO DETECTADA</p>
+        <h1>40<span>4</span></h1>
+
+        <p class="hero-sub">
+            <span id="typewriter-text"></span><span id="typewriter-cursor">|</span>
+        </p>
+
+        <a href="/" class="btn-regresar">Volver a una zona segura</a>
+    </div>
+
+    <!-- Canvas para el cursor magnético y chispas -->
+    <canvas id="cursor-canvas" aria-hidden="true"></canvas>
+
+    <script>
+        // 1. Establecer tema guardado (modo claro/oscuro compatible)
+        const temaGuardado = localStorage.getItem('theme');
+        const prefiereClaro = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        if (temaGuardado === 'light' || (!temaGuardado && prefiereClaro)) {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+
+        // 2. Animación Typewriter (Máquina de escribir)
+        function inicializarTypewriter() {
+            const elTexto = document.getElementById('typewriter-text');
+            if (!elTexto) return;
+
+            const frases = [
+                "Esta página no existe... todavía.",
+                "Quizás el bebé borró la base de datos.",
+                "Señal perdida. Reintentando conexión con la realidad."
+            ];
+
+            let fraseIndex = 0;
+            let charIndex = 0;
+            let borrando = false;
+            let timeoutId;
+
+            function type() {
+                const fraseActual = frases[fraseIndex];
+
+                if (borrando) {
+                    elTexto.textContent = fraseActual.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    elTexto.textContent = fraseActual.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let velocidad = borrando ? 30 : Math.random() * 60 + 40;
+
+                if (!borrando && charIndex === fraseActual.length) {
+                    velocidad = 2500; // pausa larga al finalizar
+                    borrando = true;
+                } else if (borrando && charIndex === 0) {
+                    borrando = false;
+                    fraseIndex = (fraseIndex + 1) % frases.length;
+                    velocidad = 500;
+                }
+
+                timeoutId = setTimeout(type, velocidad);
+            }
+
+            setTimeout(type, 800);
+        }
+
+        // 3. Cursor Personalizado con Partículas (Canvas)
+        function inicializarCursor() {
+            if (window.matchMedia("(pointer: coarse)").matches) return;
+
+            const canvas = document.getElementById('cursor-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            let width = window.innerWidth;
+            let height = window.innerHeight;
+
+            function resizeCanvas() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            const mouse = { x: width / 2, y: height / 2 };
+            const circle = { x: width / 2, y: height / 2 };
+            const particulas = [];
+
+            const puntoRadio = 3;
+            const circuloRadio = 15;
+            const colorNaranja = '255, 77, 0';
+            const colorNaranjaClaro = '212, 64, 0';
+
+            function obtenerColorBase() {
+                return document.documentElement.getAttribute('data-theme') === 'light' ? colorNaranjaClaro : colorNaranja;
+            }
+
+            class Particula {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.size = Math.random() * 2 + 1;
+                    const angulo = Math.random() * Math.PI * 2;
+                    const velocidad = Math.random() * 2 + 0.5;
+                    this.vx = Math.cos(angulo) * velocidad;
+                    this.vy = Math.sin(angulo) * velocidad;
+                    this.alpha = 1;
+                    this.decay = Math.random() * 0.02 + 0.015;
+                    this.rgbBase = obtenerColorBase();
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.alpha -= this.decay;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${this.rgbBase}, ${this.alpha})`;
+                    ctx.fill();
+                }
+            }
+
+            let ultimoMovimiento = Date.now();
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+
+                const ahora = Date.now();
+                if (ahora - ultimoMovimiento > 40) {
+                    particulas.push(new Particula(mouse.x, mouse.y));
+                    ultimoMovimiento = ahora;
+                }
+            });
+
+            window.addEventListener('mousedown', (e) => {
+                for (let i = 0; i < 15; i++) {
+                    particulas.push(new Particula(e.clientX, e.clientY));
+                }
+            });
+
+            function animar() {
+                ctx.clearRect(0, 0, width, height);
+
+                circle.x = mouse.x;
+                circle.y = mouse.y;
+
+                const rgbActual = obtenerColorBase();
+
+                for (let i = particulas.length - 1; i >= 0; i--) {
+                    const p = particulas[i];
+                    p.update();
+                    if (p.alpha <= 0 || p.size <= 0) {
+                        particulas.splice(i, 1);
+                    } else {
+                        p.draw();
+                    }
+                }
+
+                ctx.beginPath();
+                ctx.arc(circle.x, circle.y, circuloRadio, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(${rgbActual}, 0.5)`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(mouse.x, mouse.y, puntoRadio, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${rgbActual}, 1)`;
+                ctx.fill();
+
+                requestAnimationFrame(animar);
+            }
+
+            animar();
+        }
+
+        // Inicializar interactividad
+        document.addEventListener('DOMContentLoaded', () => {
+            inicializarTypewriter();
+            inicializarCursor();
+        });
+    </script>
+</body>
+
+</html>

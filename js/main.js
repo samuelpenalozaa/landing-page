@@ -334,9 +334,9 @@ function inicializarCursor() {
         // Limpiar canvas
         ctx.clearRect(0, 0, width, height);
 
-        // Interpolación del círculo exterior (lerp)
-        circle.x += (mouse.x - circle.x) * 0.15;
-        circle.y += (mouse.y - circle.y) * 0.15;
+        // Interpolación del círculo exterior (eliminado delay)
+        circle.x = mouse.x;
+        circle.y = mouse.y;
 
         // El color actual a usar para el cursor y línea
         const rgbActual = obtenerColorBase();
