@@ -9,7 +9,7 @@
     --naranja: #ff4d00;
     --gris: #1a1a1a;
     --gris-claro: #2a2a2a;
-    --navbar-height: 52px;
+    --navbar-height: 64px;
     /* used for scroll-margin-top offset */
 }
 
@@ -124,7 +124,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     background: rgba(10, 10, 10, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -1205,6 +1205,10 @@ html[data-theme="light"] .overlay-proximamente {
    Este bloque AGREGA complejidad para pantallas grandes.
    ============================================ */
 @media (min-width: 768px) {
+
+    :root {
+        --navbar-height: 80px;
+    }
 
     /* Navbar → fila horizontal */
     .navbar-hamburger {
