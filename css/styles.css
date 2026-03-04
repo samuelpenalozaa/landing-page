@@ -9,7 +9,7 @@
     --naranja: #ff4d00;
     --gris: #1a1a1a;
     --gris-claro: #2a2a2a;
-    --navbar-height: 64px;
+    --navbar-height: 52px;
     /* used for scroll-margin-top offset */
 }
 
@@ -38,9 +38,7 @@ html[data-theme="light"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    padding: 0;
+    padding: 0.5rem;
     transition: color 0.3s, transform 0.3s;
 }
 
@@ -126,7 +124,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
     background: rgba(10, 10, 10, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -142,17 +140,10 @@ body::before {
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: color 0.2s;
-    line-height: 1;
 }
 
 .navbar-logo:hover {
     color: var(--naranja);
-}
-
-.navbar-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
 }
 
 /* Mobile: links ocultos como dropdown */
@@ -1214,10 +1205,6 @@ html[data-theme="light"] .overlay-proximamente {
    Este bloque AGREGA complejidad para pantallas grandes.
    ============================================ */
 @media (min-width: 768px) {
-
-    :root {
-        --navbar-height: 80px;
-    }
 
     /* Navbar → fila horizontal */
     .navbar-hamburger {
