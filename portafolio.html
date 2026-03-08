@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es-CO" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Portafolio | Samuel Peñaloza</title>
+    <title>Portafolio de Samuel Peñaloza | Proyectos web y landing pages</title>
     <meta name="description"
-        content="Proyectos de Samuel Peñaloza. Conoce mi trabajo desarrollando web con HTML, CSS, y JavaScript puro.">
+        content="Portafolio de Samuel Peñaloza, también escrito Samuel Penaloza. Proyectos de landing pages, sitios web y experimentos con HTML, CSS, JavaScript y Three.js.">
+    <meta name="author" content="Samuel Peñaloza">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://samuel-penaloza.vercel.app/portafolio.html">
+    <link rel="alternate" hreflang="es-CO" href="https://samuel-penaloza.vercel.app/portafolio.html">
 
     <!-- ===== Open Graph Meta Tags ===== -->
-    <meta property="og:title" content="Portafolio | Samuel Peñaloza">
+    <meta property="og:title" content="Portafolio de Samuel Peñaloza | Proyectos web y landing pages">
     <meta property="og:description"
-        content="Proyectos de Samuel Peñaloza. Conoce mi trabajo desarrollando web con HTML, CSS, y JavaScript puro.">
+        content="Proyectos web de Samuel Peñaloza: landing pages, sitios HTML, CSS, JavaScript y experiencias interactivas.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://samuel-penaloza.vercel.app/portafolio.html">
+    <meta property="og:image" content="https://samuel-penaloza.vercel.app/og-image.png">
+    <meta property="og:image:alt" content="Portafolio de Samuel Peñaloza">
+    <meta property="og:locale" content="es_CO">
+    <meta property="og:site_name" content="Samuel Peñaloza">
+
+    <!-- ===== Twitter Card ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portafolio de Samuel Peñaloza | Proyectos web y landing pages">
+    <meta name="twitter:description"
+        content="Portafolio de Samuel Peñaloza con landing pages, sitios web y experimentos en HTML, CSS, JavaScript y Three.js.">
+    <meta name="twitter:image" content="https://samuel-penaloza.vercel.app/og-image.png">
+    <meta name="twitter:image:alt" content="Portafolio de Samuel Peñaloza">
 
     <!-- ===== FAVICON ===== -->
     <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
@@ -30,6 +47,52 @@
 
     <!-- ===== ESTILOS ===== -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- ===== SCHEMA.ORG (JSON-LD) ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://samuel-penaloza.vercel.app/#website",
+          "name": "Samuel Peñaloza",
+          "alternateName": "Samuel Penaloza",
+          "url": "https://samuel-penaloza.vercel.app/",
+          "inLanguage": "es-CO"
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://samuel-penaloza.vercel.app/portafolio.html#webpage",
+          "url": "https://samuel-penaloza.vercel.app/portafolio.html",
+          "name": "Portafolio de Samuel Peñaloza | Proyectos web y landing pages",
+          "description": "Portafolio de Samuel Peñaloza con landing pages, sitios web y experimentos en HTML, CSS, JavaScript y Three.js.",
+          "inLanguage": "es-CO",
+          "isPartOf": {
+            "@id": "https://samuel-penaloza.vercel.app/#website"
+          },
+          "about": {
+            "@id": "https://samuel-penaloza.vercel.app/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://samuel-penaloza.vercel.app/#person",
+          "name": "Samuel Peñaloza",
+          "alternateName": "Samuel Penaloza",
+          "url": "https://samuel-penaloza.vercel.app/",
+          "jobTitle": "Técnico calibrador de detectores de radiación",
+          "description": "Samuel Peñaloza es creador de landing pages y técnico calibrador de detectores de radiación en Fusagasugá, Colombia.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Fusagasugá",
+            "addressRegion": "Cundinamarca",
+            "addressCountry": "CO"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -75,9 +138,11 @@
     <main>
         <section id="portafolio" class="fade-in-section" style="padding-top: 15vh; min-height: 80vh;">
             <div class="sec-header">
-                <h1>// MIS PROYECTOS</h1>
+                <h1>// PORTAFOLIO DE SAMUEL PEÑALOZA</h1>
                 <div class="divider"></div>
             </div>
+            <p class="portfolio-intro">Soy Samuel Peñaloza. Aquí reúno mis landing pages, sitios web y experimentos
+                publicados con HTML, CSS, JavaScript y Three.js.</p>
 
             <div class="portfolio-grid">
 
@@ -100,7 +165,7 @@
                             <span class="pt-tag">JavaScript</span>
                         </div>
 
-                        <a href="https://samuelpenaloza.netlify.app" target="_blank" rel="noopener noreferrer"
+                        <a href="https://samuel-penaloza.vercel.app/" target="_blank" rel="noopener noreferrer"
                             class="portfolio-link">
                             Ver proyecto en vivo
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -113,24 +178,34 @@
                     </div>
                 </div>
 
-                <!-- PROYECTO 2: Próximamente -->
-                <div class="portfolio-card coming-soon-card">
+                <!-- PROYECTO 2: Playground Tenis 3D -->
+                <div class="portfolio-card">
                     <div class="portfolio-img-container">
-                        <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=600&auto=format&fit=crop"
-                            alt="Proyecto en desarrollo" class="portfolio-img" width="600" height="400" loading="lazy"
+                        <img src="https://raw.githubusercontent.com/samuelpenalozaa/playground-tenis-3d/master/assets/hero-background.png"
+                            alt="Screenshot del proyecto Playground Tenis 3D" class="portfolio-img" width="600" height="400" loading="lazy"
                             decoding="async">
-                        <div class="overlay-proximamente">
-                            <span>En desarrollo</span>
-                        </div>
                     </div>
                     <div class="portfolio-content">
-                        <h3 class="portfolio-title">App de Calibración</h3>
-                        <p class="portfolio-desc">Herramienta interna para gestión de detectores de radiación y cálculos
-                            dosimétricos en el laboratorio.</p>
+                        <h3 class="portfolio-title">Playground Tenis 3D</h3>
+                        <p class="portfolio-desc">Landing interactiva para una marca conceptual de tenis con canvas 3D,
+                            secuencia de producto, video y scroll suave.</p>
                         <div class="portfolio-tags">
-                            <span class="pt-tag disabled">JavaScript</span>
-                            <span class="pt-tag disabled">Math.js</span>
+                            <span class="pt-tag">HTML</span>
+                            <span class="pt-tag">CSS</span>
+                            <span class="pt-tag">JavaScript</span>
+                            <span class="pt-tag">Three.js</span>
                         </div>
+
+                        <a href="https://playground-tenis-3d.vercel.app" target="_blank" rel="noopener noreferrer"
+                            class="portfolio-link">
+                            Ver proyecto en vivo
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
                     </div>
                 </div>
 
@@ -190,7 +265,7 @@
     <canvas id="cursor-canvas" aria-hidden="true"></canvas>
 
     <!-- Script compartido -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 </body>
 
 </html>
