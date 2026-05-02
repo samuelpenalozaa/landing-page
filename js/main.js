@@ -380,8 +380,8 @@ function inicializarTypewriter() {
     if (!elTexto) return;
 
     const frases = [
-        "Calibro detectores de radiación de día. De noche aprendo a construir cosas en internet.",
-        "Me gusta que las cosas se hagan.",
+        "Soy Samuel Peñaloza. Calibro detectores de radiación y construyo landing pages.",
+        "Trabajo con precisión técnica y también con diseño web.",
         "Pronto seré papá. Todo cambia."
     ];
 
